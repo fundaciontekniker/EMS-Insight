@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Virginia Aranceta
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.LocalizedCommandType" table="LocalizedCommandType" schema="dbo" lazy="false">
+		<id name="commandTypeId" column="CommandTypeId" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="commandText" column="CommandText" type="string" length="50" not-null="true" lazy="false"/>
+	</class>
+</hibernate-mapping>

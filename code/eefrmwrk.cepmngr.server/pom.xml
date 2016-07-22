@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.tekniker.eefrmwrk</groupId>
+	<artifactId>eefrmwrk.cepmngr.server</artifactId>
+	<version>${eefrmwrk.version}</version>
+	<name>CEP Manager</name>
+	
+	<properties>    	
+		<eefrmwrk.version>0.0.1</eefrmwrk.version>
+		<esper.version>4.6.0</esper.version>      	
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.commons.util</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.espertech</groupId>
+			<artifactId>esper</artifactId>
+			<version>${esper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.database.server</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.cepmngr.entity</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.cepmngr.listener.api</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+	</dependencies>
+</project>

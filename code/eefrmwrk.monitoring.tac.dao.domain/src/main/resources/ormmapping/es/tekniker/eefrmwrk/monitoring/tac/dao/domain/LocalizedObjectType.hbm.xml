@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Virginia Aranceta
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.LocalizedObjectType" table="LocalizedObjectType" schema="dbo" lazy="false">
+		<id name="objectType" column="ObjectType" type="string">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<property name="objectTypeName" column="ObjectTypeName" type="string" length="50" not-null="true" lazy="false"/>
+		<set name="ORM_LocalizedAttributeType" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="ObjectType" not-null="true"/>
+			<one-to-many class="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.LocalizedAttributeType"/>
+		</set>
+	</class>
+</hibernate-mapping>

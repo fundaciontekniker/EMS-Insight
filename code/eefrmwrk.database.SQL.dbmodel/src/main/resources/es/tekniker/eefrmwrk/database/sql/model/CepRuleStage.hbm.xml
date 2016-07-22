@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2012 3:40:35 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.CepRuleStage" table="cep_rule_stage">
+       <id name="id" type="long">
+            <column name="cep_rule_stage_id" />
+           <generator class="sequence">
+            	<param name="sequence">cep_rule_stage_cep_rule_stage_id_seq</param>
+            </generator>
+        </id>
+        <property name="stageId" type="long">
+            <column name="stage_id" not-null="true" />
+        </property>
+        <property name="cepId" type="long">
+            <column name="cep_id" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

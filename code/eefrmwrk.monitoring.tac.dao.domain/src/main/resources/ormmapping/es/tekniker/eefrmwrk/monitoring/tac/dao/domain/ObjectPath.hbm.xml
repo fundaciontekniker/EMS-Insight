@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Virginia Aranceta
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.ObjectPath" table="ObjectPath" schema="dbo" lazy="false">
+		<id name="objectPathId" column="ObjectPathId" type="integer" unsaved-value="0">
+			<generator class="identity">
+			</generator>
+		</id>
+		<property name="name" column="Name" type="string" length="255" not-null="true" lazy="false"/>
+		<set name="ORM_Event" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="ObjectPathId" not-null="true"/>
+			<one-to-many class="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.Event"/>
+		</set>
+		<set name="ORM_Event1" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="ShortcutPathId" not-null="true"/>
+			<one-to-many class="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.Event"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Virginia Aranceta
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.gcm.mng.dao.domain.Gcmregistration" table="gcmregistration" schema="ems" lazy="false">
+		<id name="gcmregistration_id" column="gcmregistration_id" type="long" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="registration_id" column="registration_id" type="text" not-null="true" lazy="false"/>
+		<property name="enabled" type="integer" not-null="false" lazy="false">
+			<column name="enabled" default="1"/>
+		</property>
+	</class>
+</hibernate-mapping>

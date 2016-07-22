@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.ChangeLog" table="change_log">
+        <id name="changeId" type="long">
+            <column name="change_id" />
+            <generator class="sequence">
+            	<param name="sequence">change_log_change_id_seq</param>
+            </generator>
+        </id>
+        <property name="changeTable" type="string">
+            <column name="change_table" not-null="true" />
+        </property>
+        <property name="changeTargetid" type="long">
+            <column name="change_targetid" />
+        </property>
+        <property name="changeAction" type="string">
+            <column name="change_action" not-null="true" />
+        </property>
+        <property name="changeTimestamp" type="timestamp">
+            <column name="change_timestamp" length="29" not-null="true" />
+        </property>
+        <property name="changeOld" type="string">
+            <column name="change_old" />
+        </property>
+        <property name="changeNew" type="string">
+            <column name="change_new" />
+        </property>
+        <property name="changeCol" type="string">
+            <column name="change_col" />
+        </property>
+<!--         <set name="changeStages" table="change_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="change_id" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.ChangeStage" />
+        </set>
+ -->    </class>
+</hibernate-mapping>

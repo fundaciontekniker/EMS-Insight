@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>es.tekniker.eefrmwrk</groupId>
+  <artifactId>eefrmwrk.prediction.weather.parser</artifactId>
+  <version>${eefrmwrk.version}</version>
+  <name>Prediction Weather Parser</name>
+  
+  <properties>
+  	<eefrmwrk.version>0.0.1</eefrmwrk.version>
+  	<cxf.version>3.1.4</cxf.version>        
+  </properties>
+  
+  <dependencies>
+  		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+	  		<artifactId>eefrmwrk.config</artifactId>
+	  		<version>${eefrmwrk.version}</version>
+  		</dependency>
+  	
+  		<dependency>
+	 		<groupId>es.tekniker.eefrmwrk</groupId>
+  			<artifactId>eefrmwrk.cepmngr.client</artifactId>
+  			<version>${eefrmwrk.version}</version>
+		</dependency>
+		
+		<dependency>
+		 	<groupId>es.tekniker.eefrmwrk</groupId>
+  			<artifactId>eefrmwrk.commons.interface</artifactId>
+  			<version>${eefrmwrk.version}</version>
+		</dependency>
+  	
+		<dependency>
+    		<groupId>org.apache.cxf</groupId>
+        	<artifactId>cxf-rt-frontend-jaxws</artifactId>
+        	<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+        	<groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+        	<groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+		</dependency>
+		<dependency>
+        	<groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+		</dependency>
+                        
+  </dependencies>
+</project>

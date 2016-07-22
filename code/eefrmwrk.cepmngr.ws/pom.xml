@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>es.tekniker.eefrmwrk</groupId>
+  <artifactId>eefrmwrk.cepmngr.ws</artifactId>
+  <version>${eefrmwrk.version}</version>
+  <name>CEP manager WS</name>
+ 
+    <properties>    	
+		<eefrmwrk.version>0.0.1</eefrmwrk.version>
+		<esper.version>4.6.0</esper.version>      	
+		<cxf.version>2.2.7</cxf.version>
+	</properties>
+ 
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.cepmngr.api</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.cepmngr.server</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.cepmngr.listener.gcm</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+  			<artifactId>eefrmwrk.cepmngr.listener.cepclient</artifactId>
+  			<version>0.0.2</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+	  	<finalName>CepManagerWS</finalName>
+	  	  	<resources>
+	  		<resource>
+	  			<directory>./src/main/resources</directory>
+	  		</resource>
+	  		<resource>
+	  			<directory>../eefrmwrk.cepmngr.ws/src/main/resources</directory>
+	  		</resource>
+	  	</resources>
+	    <pluginManagement>
+	      <plugins>
+	        <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-compiler-plugin</artifactId>
+	          <configuration>
+	            <source>1.7</source>
+	            <target>1.7</target>
+	          </configuration>
+	        </plugin>
+	        <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-eclipse-plugin</artifactId>
+	          <configuration>
+	            <projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+	            <wtpmanifest>true</wtpmanifest>
+	            <wtpapplicationxml>true</wtpapplicationxml>
+	            <wtpversion>2.0</wtpversion>
+	          </configuration>
+	        </plugin>
+	      </plugins>
+	    </pluginManagement>
+	  </build>
+	<packaging>war</packaging>
+</project>

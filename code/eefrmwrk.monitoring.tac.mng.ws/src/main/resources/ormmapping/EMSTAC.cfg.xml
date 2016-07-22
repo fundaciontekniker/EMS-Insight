@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Virginia Aranceta
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+   	<!-- properties -->
+		<property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+		<property name="connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
+		<property name="connection.url"></property>
+		<property name="connection.username"></property>
+		<property name="connection.password"></property>
+		<property name="mssql.nocount">false</property>
+		<property name="show_sql">false</property>
+		<property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
+		<!-- mapping files -->
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/DuplicateValue.hbm.xml" />
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/DuplicateValueType.hbm.xml" />
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/Event.hbm.xml" />
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/EventType.hbm.xml" />
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/LocalizedAlarmType.hbm.xml" />
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/LocalizedAttributeType.hbm.xml" />
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/LocalizedCommandType.hbm.xml" />
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/LocalizedObjectType.hbm.xml" />
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/ObjectPath.hbm.xml" />
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/TrendLog.hbm.xml" />
+		<mapping resource="ormmapping/es/tekniker/eefrmwrk/monitoring/tac/dao/domain/TrendLogValue.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

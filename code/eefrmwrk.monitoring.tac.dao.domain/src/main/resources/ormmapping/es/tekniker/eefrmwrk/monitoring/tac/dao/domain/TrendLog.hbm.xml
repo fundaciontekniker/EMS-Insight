@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Virginia Aranceta
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.TrendLog" table="TrendLog" schema="dbo" lazy="false">
+		<id name="trendLogId" column="TrendLogId" type="short" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="trendLogGuid" column="TrendLogGuid" index="IX_TrendLog01" type="string" not-null="true" lazy="false"/>
+		<property name="name" column="Name" type="string" length="1024" not-null="true" lazy="false"/>
+		<property name="maxSequence" column="MaxSequence" type="integer" not-null="true" lazy="false"/>
+		<property name="capacity" column="Capacity" type="integer" not-null="false" lazy="false"/>
+		<property name="intervalSeconds" column="IntervalSeconds" type="integer" not-null="false" lazy="false"/>
+		<property name="intervalMonths" column="IntervalMonths" type="integer" not-null="false" lazy="false"/>
+		<property name="intervalYears" column="IntervalYears" type="integer" not-null="false" lazy="false"/>
+		<set name="ORM_TrendLogValue" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="TrendLogId" not-null="true"/>
+			<one-to-many class="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.TrendLogValue"/>
+		</set>
+	</class>
+</hibernate-mapping>

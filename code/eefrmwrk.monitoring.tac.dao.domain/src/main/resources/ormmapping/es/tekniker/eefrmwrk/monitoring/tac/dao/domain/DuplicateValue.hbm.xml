@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Virginia Aranceta
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.DuplicateValue" table="DuplicateValue" schema="dbo" lazy="false">
+		<id name="duplicateValueId" column="DuplicateValueId" type="integer" unsaved-value="0">
+			<generator class="identity">
+			</generator>
+		</id>
+		<many-to-one name="duplicateValueType" cascade="lock" column="DuplicateValueTypeId" class="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.DuplicateValueType" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="trendLogId" column="TrendLogId" index="IX_DuplicateValue01" type="short" not-null="true" lazy="false"/>
+		<property name="trendLogGuid" column="TrendLogGuid" index="IX_DuplicateValue02" type="string" not-null="true" lazy="false"/>
+		<property name="logValue" column="LogValue" type="float" length="53" not-null="true" lazy="false"/>
+		<property name="logTime" column="LogTime" index="IX_DuplicateValue01" type="timestamp" not-null="true" lazy="false"/>
+		<property name="sequence" column="Sequence" type="integer" not-null="true" lazy="false"/>
+		<property name="insertTimeUTC" column="InsertTimeUTC" type="timestamp" not-null="true" lazy="false"/>
+	</class>
+</hibernate-mapping>

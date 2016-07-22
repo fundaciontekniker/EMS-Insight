@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+	<title>Variable selection</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="scripts/jquery/jquery.mobile-1.3.1.min.css" />
+	<script src="scripts/jquery/jquery-1.9.1.min.js"></script>
+	<script src="scripts/jquery/jquery.mobile-1.3.1.min.js"></script>	
+    
+    <script src="scripts/conf.js"></script>
+	<script src="scripts/dataModel.js"></script>
+	<script src="scripts/varTree.js"></script>
+	<style>
+	.devCountBubble{
+		font-size: 11px;
+		font-weight: bold;
+		padding: 2px 5px 2px 5px;
+	}
+	</style>	
+</head> 
+
+<body> 
+	<div data-role="page" id="a">	
+	<div data-role="header" data-position="fixed">
+		<h1>Select Variables</h1>
+		<a href="#" data-role="button" data-icon="delete" class="ui-btn-right" onclick='varTree.clearSelection();'>Clear selection</a>	
+	</div>
+	<div data-role="content">
+			<div id="homeList" data-role="collapsible-set"  data-content-theme="c">
+		</div>	
+	</div>	
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li><a id="goTo" href="#" onClick="varTree.store();">Accept</a></li>
+			</ul>
+		</div>
+	</div>	
+	<div data-role="popup" id="popVar" data-overlay-theme="a"  data-dismissible="false">
+			<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+			<ul id="vList" data-role="listview" data-inset="true" ></ul>  
+	</div>	
+	</div>
+</body>
+<script>
+
+ varTree.init();
+ 
+</script>
+</html>

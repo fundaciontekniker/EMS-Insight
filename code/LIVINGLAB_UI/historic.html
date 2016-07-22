@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+	<title>HISTORIC</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="scripts/jquery/jquery.mobile-1.3.1.min.css" />
+	<script src="scripts/jquery/jquery-1.9.1.min.js"></script>
+	<script src="scripts/jquery/jquery.mobile-1.3.1.min.js"></script>
+	<script src="scripts/d3.v3.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="scripts/jquery/datebox/jqm-datebox.min.css" /> 
+	<script type="text/javascript" src="scripts/jquery/datebox/jqm-datebox.core.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery/datebox/jqm-datebox.mode.flipbox.min.js"></script>
+	<link rel="stylesheet" href="css/graphic.css">
+	
+    <script src="scripts/conf.js"></script>
+	<script src="scripts/DatePicker.js"></script>
+	<script src="scripts/dataModel.js"></script>
+	<script src="scripts/historic_2.js"></script>
+	<script src="scripts/groupGraph_2.js"></script>
+	<script src="scripts/HashMap.js"></script>
+</head> 
+<style>
+
+</style>
+<body> 
+	<div data-role="page" id="varGraphs">
+			
+		<div style="display:none">
+			<input id="ctrldate_1" type="text" data-role="datebox" data-options='{"mode": "flipbox", "centerHoriz": true}'/>
+			<input id="ctrltime_1" type="text" data-role="datebox" data-options='{"mode": "timeflipbox", "centerHoriz": true}'/>
+			<input id="ctrldate_2" type="text" data-role="datebox" data-options='{"mode": "flipbox", "centerHoriz": true}' />
+			<input id="ctrltime_2" type="text" data-role="datebox" data-options='{"mode": "timeflipbox", "centerHoriz": true}'/>
+		</div>
+		
+       <div data-role="popup" id="popMaxRes" data-overlay-theme="a" data-dismissible="false">
+       <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+       <div>
+          <ul id="maxList" data-role="listview" data-inset="true" data-theme="b">
+	  </ul>	  
+        </div>
+      </div>
+      
+      <div data-role="popup" id="popNoRes" data-overlay-theme="a" data-dismissible="false">
+       <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+       <div>
+          <ul id="noVList" data-role="listview" data-inset="true" data-theme="b">
+	  </ul>	  
+        </div>
+      </div>
+	
+	<div data-role="header" data-position="fixed">
+		<a data-icon="home" data-iconpos="notext" onClick="window.location='index.html'">Home</a>
+		<h1>Historic Values</h1>
+		<a href="varTree.html" data-ajax="false" data-icon="grid">Select Variables</a>		
+	</div>
+	<div data-role="content" id="show">
+		<ul data-role="listview">
+			<li data-role="fieldcontain">
+			<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+				<legend>Initial date:</legend>
+				<a class="ctrldate_1_button" data-role="button" data-icon="grid" data-iconpos="left">Set Date</a>
+				<a class="ctrltime_1_button" data-role="button" data-icon="clock" data-iconpos="right">Set Time</a>
+			</fieldset>
+			</li>
+			<li data-role="fieldcontain">
+			<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+				<legend>Final Date:</legend>
+				<a class="ctrldate_2_button" data-role="button" data-icon="grid" data-iconpos="left">Set Date</a>
+				<a class="ctrltime_2_button" data-role="button" data-icon="clock" data-iconpos="right">Set Time</a>
+			</fieldset>
+			</li> 
+			<li data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+    	<legend>Visualization mode:</legend>
+         	<input type="radio" name="radio-choice-2" id="radio-choice-21" value="absolut" checked="checked" />
+         	<label for="radio-choice-21">Absolut</label>
+         	<input type="radio" name="radio-choice-2" id="radio-choice-22" value="incremental"  />
+         	<label for="radio-choice-22">Incremental</label>
+    </fieldset>
+</li> 
+			<li data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" onClick=historic.buttonClick()>
+    	<legend></legend>
+         	<input type="button" id="btnUpdate" value="Update Graph" />
+         	<label for="btnUpdate">Update</label>
+    </fieldset>
+</li>
+
+				<div id="graphList"/>			
+		</ul>
+	</div>
+	</div>	
+
+
+
+</body>
+<script>
+
+$(document).bind("pageshow",historic.init);
+
+
+</script>
+</html>

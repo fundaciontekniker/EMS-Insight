@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.Stage" table="stage">
+         <id name="stageId" type="long">
+            <column name="stage_id" />
+            <generator class="sequence">
+            	<param name="sequence">stage_stage_id_seq</param>
+            </generator>
+        </id>
+		<!--
+		<many-to-one name="stageOwner" class="es.tekniker.eefrmwrk.database.sql.model.UserLogin" fetch="select">
+            <column name="stage_owner" not-null="true" />
+        </many-to-one>
+         -->
+        <property name="stageOwner" type= "long">
+            <column name="stage_owner" not-null="true" />
+        </property>
+        <property name="stageDesc" type="string">
+            <column name="stage_desc" />
+        </property>
+        <property name="activ" type="long">
+            <column name="activ" not-null="true" />
+        </property>
+        <!--  <set name="varMetadaStages" table="var_metada_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stage_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.VarMetadaStage" />
+        </set>
+        <set name="taskStages" table="task_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stage_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.TaskStage" />
+        </set>
+        <set name="changeStages" table="change_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stage_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.ChangeStage" />
+        </set>
+        <set name="userStages" table="user_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stage_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.UserStage" />
+        </set>
+        <set name="opcStages" table="opc_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stage_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.OpcStage" />
+        </set>
+        <set name="cepNames" table="cep_name" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stage_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.CepName" />
+        </set>
+        -->
+    </class>
+</hibernate-mapping>

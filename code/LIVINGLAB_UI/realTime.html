@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+	<title>Variable selection</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<link rel="stylesheet" href="css/graphic.css">
+<link href="scripts/jquery/jquery.mobile-1.3.1.min.css" rel="stylesheet" type="text/css" />
+<script src="scripts/jquery/jquery-1.9.1.min.js"></script>
+<script src="scripts/jquery/jquery.mobile-1.3.1.min.js"></script>
+	<!--[if IE]>
+		<script type="text/javascript" src="scripts/iExp.js"></script>
+	<![endif]-->	
+	
+<script src="scripts/conf.js"></script>
+<script src="scripts/d3.v3.min.js"></script>
+<script src="scripts/groupGraph_2.js"></script>
+<script src="scripts/dataModel.js"></script>
+<script src="scripts/realTime.js"></script>
+<script src="scripts/HashMap.js"></script>
+<style>
+
+	.val{
+  		font-size: 2em;
+ 	 }
+	
+		.ui-grid-solo .ui-block-a,
+		.ui-grid-solo .ui-block-b{
+			float: right; 
+			width: 100%;
+		}
+	
+	@media all and (max-width: 900px){
+		.ui-grid-a .ui-block-a,
+		.ui-grid-a .ui-block-b{
+			float: right; 
+			width: 100%;
+		}
+		
+		.ui-grid-b .ui-block-a,
+		.ui-grid-b .ui-block-c,
+		.ui-grid-b .ui-block-b{
+			float: right; 
+			width: 100%;
+		} 
+		
+		.ui-grid-c .ui-block-a,
+		.ui-grid-c .ui-block-c{
+			float: right; 
+			width: 50%;
+		}
+		.ui-grid-c .ui-block-b,
+		.ui-grid-c .ui-block-d{
+			float: left; 
+			width: 50%;
+		} 
+	
+	@media all and (max-width: 600px){
+	
+		.ui-grid-c .ui-block-a,
+		.ui-grid-c .ui-block-c{
+			float: right; 
+			width: 100%;
+		}
+		.ui-grid-c .ui-block-b,
+		.ui-grid-c .ui-block-d{
+			float: left; 
+			width: 100%;
+		} 	
+		
+		
+	 .val{
+  		font-size: 1.5em;
+ 		 }
+	}
+
+
+</style>
+<body> 
+
+<div data-role="page" id="realTime" >
+	
+	<div data-role="header" data-position="fixed">
+		<a data-icon="home" data-iconpos="notext" onClick="window.location='index.html'">Home</a>
+		<h1>Real Time Monitoring</h1>
+		<a href="varTree.html" data-ajax="false" data-icon="grid">Variables</a>	
+	</div>
+
+      <div data-role="popup" id="popMaxRes" data-overlay-theme="a" data-dismissible="false">
+       <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+       <div>
+          <ul id="maxList" data-role="listview" data-inset="true" data-theme="b">
+	  </ul>	  
+        </div>
+      </div>
+      
+	<div data-role="popup" id="popupMenu" data-theme="a" data-overlay-theme="a"  data-dismissible="false">
+		
+	 		<a href="#" data-rel="back" onClick="realTime.saveChanges();" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+				<form>
+					<div style="padding:10px 20px;">
+							  <h3>Settings</h3>
+					          <label for="txt_retrieval">Retrieval interval (min):</label>
+					          <input type="text" id="txt_retrieval" value="3600" data-theme="a" />
+					          <label for="txt_refresh">Refresh rate (sec):</label>
+					          <input type="text" id="txt_refresh" value="3000" data-theme="a" />
+					</div>
+				</form>
+			
+		</div>
+	
+	
+	
+	<div data-role="content">
+ 		<div id="divPane">
+			<ul data-role="listview" id="graphList"></ul>
+		</div>
+		<div id="sList" >
+		</div>
+	</div>
+ 
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li><a href="#popupMenu" onCLick="realTime.stopSim();" data-rel="popup" data-position-to="window" data-theme="a" data-transition="flip">Settings</a></li>
+				<li><a href='#' id="tgBut" onClick="realTime.togglePane();"></a></li>
+			</ul>
+		</div>
+	</div>
+	
+</div>
+
+
+
+</body>	
+
+<script>
+
+realTime.init();
+$("#select-choice-1").on("change",function(){realTime.setDate()});
+
+</script>

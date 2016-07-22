@@ -1,0 +1,29 @@
+svg {
+  font: 10px sans-serif;
+  }
+
+.line {
+  fill: none;
+  stroke-width: 1.0px;
+}
+  
+ .axis line,.axis path{
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+.axis text {
+    font-size: 0.8em;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: none;
+  stroke: steelblue;
+}

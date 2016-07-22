@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>es.tekniker.eefrmwrk</groupId>
+  <artifactId>eefrmwrk.prediction.server</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Prediction Server</name>
+	<dependencies>
+			<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.commons.util</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.ac.waikato.cms.weka</groupId>
+			<artifactId>weka-dev</artifactId>
+			<version>3.7.9</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.cepmngr.api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.prediction.weka</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.database.server</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>2.2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>2.2.7</version>
+		</dependency>
+   	</dependencies>
+</project>

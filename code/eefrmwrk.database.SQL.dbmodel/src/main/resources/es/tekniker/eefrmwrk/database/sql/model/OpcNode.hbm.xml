@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.database.sql.model.OpcNode"
+		table="opc_node">
+		<id name="opcNodeId" type="long">
+			<column name="opc_node_id" />
+			<generator class="sequence">
+				<param name="sequence">opc_node_opc_node_id_seq</param>
+			</generator>
+		</id>
+		<!-- <many-to-one name="opcServer" class="es.tekniker.eefrmwrk.database.sql.model.OpcServer" 
+			fetch="select"> <column name="opc_server_id" not-null="true" /> </many-to-one> -->
+		<property name="opcServerId" type="long">
+			<column name="opc_server_id" not-null="true" />
+		</property>
+		<property name="opcNodename" type="string">
+			<column name="opc_nodename" not-null="true" />
+		</property>
+		<property name="opcNmspc" type="string">
+			<column name="opc_nmspc" not-null="true" />
+		</property>
+		<property name="activ" type="long">
+			<column name="activ" />
+		</property>
+	</class>
+</hibernate-mapping>

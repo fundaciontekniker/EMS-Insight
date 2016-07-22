@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 7, 2012 8:10:26 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.database.sql.model.CepEngine"
+		table="cep_engine">
+		<id name="cengId" type="long">
+			<column name="ceng_id" />
+			<generator class="sequence">
+				<param name="sequence">cep_engine_ceng_id_seq</param>
+			</generator>
+		</id>
+		<property name="cengUrl" type="string">
+			<column name="ceng_url" not-null="true" unique="true" />
+		</property>
+		<property name="cengDesc" type="string">
+			<column name="ceng_desc" />
+		</property>
+		<property name="activ" type="long">
+			<column name="activ" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

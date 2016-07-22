@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.tekniker.eefrmwrk</groupId>
+	<artifactId>eefrmwrk.database.SQL.dbmanage</artifactId>
+	<version>${eefrmwrk.version}</version>
+	<name>SQL database Manage</name>
+	
+	<properties>    	
+    	<eefrmwrk.version>0.0.1</eefrmwrk.version>
+  	</properties> 
+	
+	<dependencies>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.commons.util</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+			<artifactId>eefrmwrk.database.SQL.dbmodel</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+		
+	 	<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+	<build>
+		<plugins>
+		  <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.7</source>
+            <target>1.7</target>
+          </configuration>
+        </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+					<wtpmanifest>true</wtpmanifest>
+					<wtpapplicationxml>true</wtpapplicationxml>
+					<wtpversion>2.0</wtpversion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

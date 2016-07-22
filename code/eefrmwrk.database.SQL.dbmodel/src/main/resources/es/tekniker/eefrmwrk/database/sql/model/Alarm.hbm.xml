@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 4, 2013 3:26:15 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.database.sql.model.Alarm"
+		table="alarm">
+		<id name="alarmId" type="long">
+			<column name="alarm_id" />
+			<generator class="sequence">
+				<param name="sequence">alarm_alarm_id_seq</param>
+			</generator>
+		</id>
+		<property name="alarmCode" type="string">
+			<column name="alarm_code" not-null="true" unique="true"/>
+		</property>
+		<property name="alarmDesc" type="string">
+			<column name="alarm_desc" />
+		</property>
+		<property name="alarmMessage" type="string">
+			<column name="alarm_message" not-null="true" />
+		</property>
+		<property name="alarmSeverity" type="long">
+			<column name="alarm_severity" not-null="true" />
+		</property>
+		<property name="alarmType" type="string">
+			<column name="alarm_type" not-null="true" />
+		</property>
+        <property name="alarmTimespan" type="timestamp">
+            <column name="alarm_timespan" length="29" not-null="true" />
+        </property>
+		<property name="alarmState" type="string">
+			<column name="alarm_state" not-null="true" />
+		</property>
+		<property name="alarmDuedate" type="long">
+			<column name="alarm_duedate" />
+		</property>
+		<property name="alarmUser" type="long">
+			<column name="alarm_user" />
+		</property>
+		<property name="alarmRule" type="long">
+			<column name="alarm_rule" />
+		</property>
+		<property name="activ" type="long">
+            <column name="activ" not-null="true"/>
+        </property>
+	</class>
+</hibernate-mapping>

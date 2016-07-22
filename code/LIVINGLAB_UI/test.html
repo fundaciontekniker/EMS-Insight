@@ -1,0 +1,318 @@
+<html>
+<head>
+<title>gridster test</title>
+<link rel="stylesheet" type="text/css" href="css/gridster.css">
+<link rel="stylesheet" type="text/css"
+	href="https://dc-js.github.io/dc.js/css/dc.css" />
+<style>
+.gridster * {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style-type: none;
+}
+
+body {
+	font-size: 16px;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	color: #444;
+}
+
+.controls {
+	margin-bottom: 20px;
+}
+
+.gridster ul {
+	background-color: #EFEFEF;
+}
+
+.gridster li {
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+	line-height: 100%;
+}
+
+.gridster {
+	margin: 0 auto;
+	opacity: .8;
+	-webkit-transition: opacity .6s;
+	-moz-transition: opacity .6s;
+	-o-transition: opacity .6s;
+	-ms-transition: opacity .6s;
+	transition: opacity .6s;
+}
+
+.gridster .gs-w {
+	background: #DDD;
+	cursor: pointer;
+}
+
+.gridster .player {
+	background: #BBB;
+}
+
+.gridster .preview-holder {
+	border: none !important;
+	background: red !important;
+}
+
+#power-gauge g.arc {
+	fill: steelblue;
+}
+
+#power-gauge g.pointer {
+	fill: #e85116;
+	stroke: #b64011;
+}
+
+#power-gauge g.label text {
+	text-anchor: middle;
+	font-size: 14px;
+	font-weight: bold;
+	fill: #666;
+}
+</style>
+</head>
+<body>
+
+
+
+	<section class="demo">
+
+	<div  id='dc-data-count'>
+		<span class='filter-count'></span> selected out of <span
+			class='total-count'></span> records.
+	</div>
+		<div class="gridster">
+			<ul>
+				<!-- 				<li id="power-gauge2" data-row="1" data-col="1" data-sizex="2" -->
+				<!-- 					data-sizey="2"></li> -->
+				<!-- 				<li id="power-gauge1" data-row="3" data-col="1" data-sizex="2" -->
+				<!-- 					data-sizey="1"></li> -->
+				<li id="d_0" data-row="1" data-col="1" data-sizex="40" data-sizey="20"></li>
+				<li id="d_1" data-row="1" data-col="50" data-sizex="10" data-sizey="10"></li>
+				<li id="d_3" data-row="20" data-col="50" data-sizex="10" data-sizey="10"></li>
+				<li id="d_2" data-row="40" data-col="10" data-sizex="40" data-sizey="20"></li>
+			</ul>
+		</div>
+	</section>
+	<script type="text/javascript" src="scripts/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="scripts/d3.v3.min.js"></script>
+	<script type="text/javascript" src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
+	<script type="text/javascript" src="https://dc-js.github.io/dc.js/js/dc.js"></script>
+	<script type="text/javascript" src="https://dc-js.github.io/dc.js/js/colorbrewer.js"></script>
+	<script type="text/javascript" src="scripts/gauge.js"></script>
+	<script type="text/javascript" src="scripts/gridster.js"></script>
+	<script type="text/javascript" src="scripts/conf.js"></script>
+	<script type="text/javascript" src="scripts/d3.v3.min.js"></script>
+	<script type="text/javascript" src="scripts/dataModel.js"></script>
+	<script type="text/javascript" src="scripts/HashMap.js"></script>
+	<script type="text/javascript">
+		
+	var varGroup = [ {
+			varName : "Tibucon_7_Temp_1124682048"
+		}, {
+			varName : "Tibucon_17_Temp_1124682048"
+		} ];
+
+		for (i in varGroup) {
+			console.log(i + ", " + varGroup[i].varName);
+			//getData(varGroup[i].varName,1453536000000,1453566000000);
+			getData(varGroup[i].varName, 1453536000000, 1454918400000);
+		}
+
+		var sc = 2;
+		var vList = [];
+		//getData("Tibucon_17_Temp_1124682048",1453536000000,1454918400000);
+		function getData(varName, initialDate, finalDate) {
+			$
+					.ajax({
+						type : 'POST',
+						url : homeWS_URL,
+						data : "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:home='http://home.eefrmwrk.tekniker.es/'><soapenv:Header/><soapenv:Body><home:getVariableValues><varName>"
+								+ varName
+								+ "</varName><initialDate>"
+								+ initialDate
+								+ "</initialDate><finalDate>"
+								+ finalDate
+								+ "</finalDate><absolut>absolut</absolut></home:getVariableValues></soapenv:Body></soapenv:Envelope>",
+						contentType : 'text/xml;charset=UTF-8',
+						processData : false,
+						success : getVarValues_success,
+						complete : getVarValues_complete,
+						error : function(a, e) {
+							console.log("ERROR: " + a);
+						}
+					});
+
+			function getVarValues_success(xml, status, xhr) {
+				$(xml).find('variable').each(
+						function(index, element) {
+							var V = {};
+							V.varName = varName;
+							V.value = Number($(element).find('value').text());
+							V.timestamp = new Date(Number($(element).find('timestamp').text()));
+							V.month=d3.time.month(V.timestamp);
+							vList.push(V);
+						});
+			}
+			;
+
+			function getVarValues_complete(xhr, status) {
+				console.log("getVarValues_complete");
+				sc--;
+				if (sc == 0)
+					drawGraphs(vList);
+			}
+			;
+		};
+
+		function drawGraphs(dataset) {
+console.log(dataset);
+			addC = function(p, d) {return p + 1;}, 
+			remC = function(p, d) {return p - 1;},
+			addT = function(p, d) {	return p + d.value;}, 
+			remT = function(p, d) {return p - d.value;},
+			ini = function() {return 0;},
+			
+			ndx = crossfilter(dataset), 
+			all = ndx.groupAll().reduce(addC,remC, ini),
+
+			fields = ndx.dimension(function(d) {return d.varName;}),
+			nameFields = fields.group().reduce(addC, remC, ini);
+			
+			time_field = ndx.dimension(function(d) {return [ d.timestamp, d.varName ];}),
+			time_fields = time_field.group().reduce(addT, remT, ini);
+
+			temperature = ndx.dimension(function(d) {return d.value;}),
+			temperatures = temperature.group().reduce(addC, remC, ini);
+
+			extent = d3.extent(dataset, function(d) {return d.timestamp;}),
+			range = d3.extent(dataset, function(d) {return d.value;}), 
+			date_format = d3.time.format("%b %d %I:%M %p"),
+
+		    moveMonths = ndx.dimension(function (d) {return d.month;});
+			var volumeByMonthGroup = moveMonths.group().reduceSum(function (d) { return d.value/100;  });
+			
+			coolDim = ndx.dimension(function(d) {
+				if (d.value < 12)
+					return '< 12';
+				else if (d.value < 18)
+					return '12-18';
+				else
+					return '>18';
+			}), 
+			coolGroup = coolDim.group();
+
+			d3.select("#date-start").attr("datetime", extent[0]).text(date_format(extent[0]));
+			d3.select("#date-end").attr("datetime", extent[1]).text(date_format(extent[1]));
+
+			dc.dataCount('#dc-data-count').dimension(ndx).group(all);
+
+			var valueChart=dc.seriesChart("#d_0")
+					.dimension(time_field)
+					.group(time_fields)
+					.seriesAccessor(function(d) {return d.key[1];})
+					.keyAccessor(function(d) {return d.key[0];})
+					.xAxisLabel("Observation Time")
+					.yAxisLabel("Temperature")
+					.y(d3.scale.linear().domain([ range[0] - 5, range[1] + 5 ]))
+					.x(d3.time.scale().domain(extent))
+					.renderHorizontalGridLines(true)
+					.renderVerticalGridLines(true)
+					.legend(dc.legend().x(50).y(10).itemHeight(10).gap(5))
+					.brushOn(false);
+
+			dc.pieChart("#d_1")
+				.height(150)
+				.width(150)
+				.radius(70)
+				.innerRadius(20)
+				.dimension(fields)
+				.group(nameFields);
+
+			dc.pieChart("#d_3")
+				.height(150)
+				.width(150)
+				.radius(70)
+				.innerRadius(20)
+				.dimension(coolDim)
+				.group(coolGroup);
+			
+			dc.barChart('#d_2')
+			.dimension(moveMonths)
+        	.group(volumeByMonthGroup)
+        	.centerBar(true)
+        	.x(d3.time.scale().domain(extent))
+        	.round(d3.time.month.round)
+        	.alwaysUseRounding(true)
+        	.xUnits(d3.time.months);
+	        
+			// temp_chart
+			//	     .width(.5 * width)
+			//	     .dimension(temperature)
+			//	     .x(d3.scale.linear().domain([0, 100]))
+			//	     .xAxisLabel("Temperature °F")
+			//	     .elasticX(true)
+			//	     .height(400)
+			//	     .group(temperatures)
+			//	     .elasticY(true)
+			//	     .yAxisLabel("Count")
+			//	     .renderHorizontalGridLines(true);
+
+			dc.renderAll();
+			console.log(range);
+		};
+
+		var gridster;
+
+		$(function() {
+			gridtster = $(".gridster > ul").gridster({
+				widget_margins : [ 5, 5 ],
+				widget_base_dimensions : [ 15, 15 ],
+				min_cols : 60,
+				max_cols : 90
+			}).data('gridster');
+		});
+
+		/*var powerGauge2 = gauge('#power-gauge2', {
+			ringWidth : 20,
+			minValue : 20,
+			maxValue : 50,
+			transitionMs : 3000,
+			minAngle : 5,
+			maxAngle : 175,
+			arcColorFn : d3.interpolateHsl("blue", "yellow")
+		});
+		powerGauge2.render(30);
+
+		var powerGauge3 = gauge('#power-gauge3', {
+			ringWidth : 20,
+			minValue : 10,
+			maxValue : 50,
+			transitionMs : 3000,
+			minAngle : -110,
+			maxAngle : 110,
+			majorTicks : 10,
+			arcColorFn : d3.interpolateHsl("black", "red")
+		});
+		powerGauge3.render(43);
+
+		var powerGauge = gauge('#power-gauge1', {
+			ringWidth : 50,
+			minValue : 0,
+			maxValue : 5,
+			transitionMs : 4000,
+			clipHeight : 100,
+		});
+		powerGauge.render(1.36);
+
+		$("#select-choice-1").on("change", function() {
+			realTime.setDate()
+		});*/
+	</script>
+</body>
+</html>

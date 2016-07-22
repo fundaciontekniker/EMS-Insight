@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.VarMetadata" table="var_metadata">
+        <id name="vmdId" type="long">
+            <column name="vmd_id" />
+            <generator class="sequence">
+            	<param name="sequence">var_metadata_vmd_id_seq</param>
+            </generator>
+        </id>
+        <property name="vmdName" type="string">
+            <column name="vmd_name" not-null="true" unique="true" />
+        </property>
+        <property name="vmdLocalization" type="long">
+            <column name="vmd_localization" />
+        </property>
+        <property name="vmdPhytype" type="string">
+            <column name="vmd_phytype" />
+        </property>
+        <property name="vmdDigtype" type="string">
+            <column name="vmd_digtype" />
+        </property>
+        <property name="vmdMeasureunit" type="string">
+            <column name="vmd_measureunit" />
+        </property>
+        <property name="vmdUri" type="string">
+            <column name="vmd_uri" />
+        </property>
+        <property name="vmdAccess" type="string">
+            <column name="vmd_access" />
+        </property>
+        <property name="vmdStoredbd" type="string">
+            <column name="vmd_storedbd" not-null="true" />
+        </property>
+        <property name="vmdDescription" type="string">
+            <column name="vmd_Description" />
+        </property>
+        <property name="activ" type="long">
+            <column name="activ" not-null="true" />
+        </property>
+        <!-- <set name="varMetadaStages" table="var_metada_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vmd_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.VarMetadaStage" />
+        </set>
+        <set name="homeVarMetadatas" table="home_var_metadata" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vmd_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.HomeVarMetadata" />
+        </set>
+        <set name="deviceVarMetadatas" table="device_var_metadata" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vmd_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.DeviceVarMetadata" />
+        </set>
+        <set name="valueReads" table="value_read" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vr_vmd" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.ValueRead" />
+        </set> -->
+    </class>
+</hibernate-mapping>

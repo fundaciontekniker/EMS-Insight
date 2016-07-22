@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ALARMS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<style>      
+        .left-icon{
+        float: left;
+		max-height: 16x;  
+        max-width: 16px;  
+        left: 10px;  
+        top: .9em;
+        padding-right: 5px;
+        }
+        .right-icon{
+        position:absolute;
+        float: right;
+		max-height: 16x;  
+        max-width: 16px;  
+        right: 10px;  
+        top: .9em;
+        }
+
+		#popupalarm-popup,#ruleBuilder-popup{
+			width: 70%;
+		}    
+    </style>
+	<link href="scripts/jquery/jquery.mobile-1.3.1.min.css" rel="stylesheet" type="text/css" />
+	<script src="scripts/jquery/jquery-1.9.1.min.js"></script>
+	<script src="scripts/jquery/jquery.mobile-1.3.1.min.js"></script>
+    <script src="scripts/conf.js"></script>
+    <script src="scripts/HashMap.js"></script>
+    <script src="scripts/dataModel.js"></script>
+    <script src="scripts/alarm.js"></script>
+    <!-- <script src="scripts/varTree.js"></script> -->
+  </head>
+  <body>
+    <!-- alarmPage -->
+    <div data-role="page" id="alarms">
+      <div data-role="header" data-position="fixed">
+    	 <a href="index.html" data-icon="home" data-ajax="false" data-iconpos="notext" >Ham</a>
+      	<h1>Alarms</h1>
+		<a href="#" type="Button" onClick="alarm.checkPendingAlarms()" data-ajax="false">Accept all pending</a></div>
+      <div data-role="content">
+        <fieldset class="ui-grid-solo">
+          <div class="ui-block-a">
+            <ul id="newList" data-role="listview" data-inset="true"></ul>
+          </div>
+        </fieldset>
+<!--         <fieldset class="ui-grid-solo"> -->
+<!--           <div class="ui-block-a"> -->
+<!--             <ul id="alarmList" data-role="listview" data-inset="true"></ul> -->
+<!--           </div> -->
+<!--         </fieldset> -->
+      </div>
+     
+	<!-- PAGINA DE REGLAS -->
+	 <div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li><a href='#rules'>Rules</a></li>
+			</ul>
+		</div>
+	</div>
+	 
+	
+	<!-- POPUP con información de la alarma seleccionada -->
+	  <div data-role="popup" id="popupalarm" data-overlay-theme="a" data-dismissible="false">
+        <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+       <div>
+          <ul data-role="listview" data-inset="true" data-theme="b">
+
+            <li data-role="fieldcontain">
+              <label for="select-choice-a">Code:</label>
+              <div id="aCode" />
+            </li>
+            <li data-role="fieldcontain">
+              <label for="select-choice-a">Message:</label>
+              <div id="aMess" />
+  		     </li> 
+            <li data-role="fieldcontain">
+              <label for="select-choice-a">Description:</label>
+              <div id="aDesc" />
+  		     </li> 
+<!--             <li data-role="fieldcontain"> -->
+<!--               <label for="select-choice-a" class="select">EPL:</label> -->
+<!--               <div id="aRule" /> -->
+<!--             </li> -->
+         <li data-role="fieldcontain"> 
+              <label for="select-choice-a" class="select">Severity:</label>
+              <div id="aSeverity" />
+            </li>
+            <li data-role="fieldcontain">
+              <label for="select-choice-a" class="select">Type:</label>
+              <div id="aType" />
+            </li>
+            <li data-role="fieldcontain">
+              <label for="select-choice-a" class="select">State:</label>
+              <div id="aState" />
+            </li>
+            <li data-role="fieldcontain">
+            <label for="select-choice-a" class="select">Action:</label> 
+            <select name="select-choice-a" id="select-choice-a" data-native-menu="false">
+              <option value="accept">Accept</option>
+              <option value="cancel">Cancel</option>
+            </select></li>
+            <li>
+              <button type="submit" data-theme="a" onClick="alarm.updateAlarm()" data-mini="true">Submit</button>
+            </li>
+          </ul>
+		  
+        </div>
+      </div>
+	  
+    </div>
+
+    <div data-role="page" id="rules">
+      <div data-role="header" data-position="fixed">
+        <h1>Rules</h1>
+		<a href="index.html" data-icon="home" data-ajax="false" data-iconpos="notext">Home</a>
+      </div>
+      <div data-role="content">
+        <ul data-role="listview" id="ruleList" data-inset="true">
+        </ul>
+<!-- 		<button id="btn-addRule" onClick="alarm.updateRule();" type="submit" data-theme="a" data-mini="true">Add</button> -->
+      </div>
+	  	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li><a href='#alarms'>Alarms</a></li>
+			</ul>
+		</div>
+		</div>
+
+ <div data-role="popup" id="ruleBuilder" data-overlay-theme="a" data-dismissible="false">
+        <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+       <div>
+          <ul data-role="listview" data-inset="true" data-theme="b">
+		  	<li id="rHeader" data-role="list-divider">
+            </li>
+			<li data-role="fieldcontain">
+              <label for="rEPL_text">EPL:</label>
+              <div id="rEPL_text"></div>
+            </li>
+            <li data-role="fieldcontain">
+              <label for="rListener_text">Listener:</label>
+              <div id="rListener_text"></div>
+            </li>
+             <li data-role="fieldcontain">
+              <label for="rSeverity_text">Severity:</label>
+              <div id="rSeverity_text"></div>
+            </li>
+            <li data-role="fieldcontain">
+              <label for="rType_text">Message:</label>
+              <div id="rType_text"></div>
+            </li>
+            <li data-role="fieldcontain">
+              <label for="rListener_text">Status:</label>
+              <div id="rStatus_text"></div>
+            </li>
+            </ul>
+        </div>
+      </div> 
+   
+   </div>
+	
+
+  </body>
+  	<script>
+	alarm.init();   
+	</script>
+</html>

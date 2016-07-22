@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.Task" table="task">
+        <id name="taskId" type="long">
+            <column name="task_id" />
+            <generator class="sequence">
+            	<param name="sequence">task_task_id_seq</param>
+            </generator>
+        </id>
+        <property name="taskVar" type="string">
+            <column name="task_var" />
+        </property>
+        <property name="taskDev" type="string">
+            <column name="task_dev" />
+        </property>
+        <property name="taskName" type="string">
+            <column name="task_name" not-null="true" unique="true" />
+        </property>
+        <property name="taskDesc" type="string">
+            <column name="task_desc" />
+        </property>
+        <property name="taskPeriod" type="string">
+            <column name="task_period" not-null="true" />
+        </property>
+        <property name="taskValue" type="string">
+            <column name="task_value" />
+        </property>
+        <property name="activ" type="long">
+            <column name="activ" not-null="true"/>
+        </property>
+        <!-- <set name="taskStages" table="task_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="task_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.TaskStage" />
+        </set> -->
+    </class>
+</hibernate-mapping>

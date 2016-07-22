@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.Geopoint" table="geopoint">
+               <id name="geoId" type="long">
+            <column name="geo_id" />
+            <generator class="sequence">
+            	<param name="sequence">geopoint_geo_id_seq</param>
+            </generator>    
+        </id>
+        <property name="geoLoc" type="long">
+            <column name="geo_loc" scale="0" not-null="true" />
+        </property>
+        <!-- <many-to-one name="localization" class="es.tekniker.eefrmwrk.database.sql.model.Localization" fetch="select">
+            <column name="geo_loc" not-null="true" />
+        </many-to-one> -->
+        <property name="geoLong" type="long">
+            <column name="geo_long" not-null="true" />
+        </property>
+        <property name="geoLat" type="long">
+            <column name="geo_lat" not-null="true" />
+        </property>
+        <property name="activ" type="long">
+            <column name="activ" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

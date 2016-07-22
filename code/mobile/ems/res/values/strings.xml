@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">EMS</string>
+    <!-- <string name="title_activity_main">EMS</string> -->
+    <string name="title">EMS</string>
+	<string name="strGCMNotificationTitle">EMS Notification</string>
+		
+	<string name="strWebServiceRegIdInvokedError">El envio del valor RegId no ha sido correcto</string>
+	<string name="strNoNetworkConnectivity">No hay conectividad de red</string>
+		
+	<string name="open_web_button">Acceso LIVINGLAB Web</string>	
+	
+	<string name="notification_button">Notificaciones</string>
+	
+	
+</resources>

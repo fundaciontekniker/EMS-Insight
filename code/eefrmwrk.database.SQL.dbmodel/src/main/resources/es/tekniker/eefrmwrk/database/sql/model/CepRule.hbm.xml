@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 7, 2012 8:10:26 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.CepRule" table="cep_rule">
+         <id name="cepId" type="long">
+            <column name="cep_id" />
+           <generator class="sequence">
+            	<param name="sequence">cep_rule_cep_id_seq</param>
+            </generator>
+        </id>
+         <property name="cepEngine" type="long">
+            <column name="cep_engine" not-null="true"/>
+        </property>
+        <property name="cepName" type="string">
+            <column name="cep_name" not-null="true" unique="true" />
+        </property>
+        <property name="cepEpl" type="string">
+            <column name="cep_epl" />
+        </property>
+        <property name="cepListener" type="string">
+            <column name="cep_listener" />
+        </property>
+        <property name="cepSeverity" type="long">
+            <column name="cep_severity" />
+        </property>
+        <property name="cepMessage" type="string">
+            <column name="cep_message" />
+        </property>
+        <property name="activ" type="long">
+            <column name="activ" not-null="true"/>
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

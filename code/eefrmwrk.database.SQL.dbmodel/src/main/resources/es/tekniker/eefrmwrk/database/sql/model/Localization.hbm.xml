@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.Localization" table="localization">
+        <id name="locId" type="long">
+            <column name="loc_id" />
+            <generator class="sequence">
+            	<param name="sequence">localization_loc_id_seq</param>
+            </generator>    
+        </id>
+        <property name="locName" type="string">
+            <column name="loc_name" not-null="true" />
+        </property>
+        <property name="locAdress" type="string">
+            <column name="loc_adress" />
+        </property>
+        <property name="locZip" type="string">
+            <column name="loc_zip" />
+        </property>
+        <property name="locCity" type="string">
+            <column name="loc_city" />
+        </property>
+        <property name="locCountry" type="string">
+            <column name="loc_country" />
+        </property>
+        <property name="locGridlocation" type="string">
+            <column name="loc_gridlocation" />
+        </property>
+        <property name="activ" type="long">
+            <column name="activ" not-null="true"/>
+        </property>
+<!--         <set name="geopoints" table="geopoint" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="loc_id" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.Geopoint" />
+        </set> -->
+    </class>
+</hibernate-mapping>

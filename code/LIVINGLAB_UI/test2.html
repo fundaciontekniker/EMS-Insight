@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>dc.js multi-line chart attempt</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="https://dc-js.github.io/dc.js/css/dc.css"/>
+</head>
+
+<body>
+	<script src="scripts/conf.js"></script>
+	<script type="text/javascript" src="scripts/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="scripts/d3.v3.min.js"></script>
+	<script type="text/javascript" src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
+	<script type="text/javascript" src="https://dc-js.github.io/dc.js/js/dc.js"></script>
+
+
+<div class="container">
+    <h1>Multi-Line Chart in dc.js</h1>
+    <div class="row">
+        <div id="data-count" class="span12">
+            Showing <span class="filter-count"/></span> of <span class="total-count"></span> data points
+            | <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="time-chart" class="dc-chart span6">
+            <strong>Time</strong>
+            <small class="text-muted">
+            <time id="date-start" datetime="2012-08-26 20:09-0700">8:09pm on August 26th, 2012</time> &ndash;
+            <time id="date-end" datetime="2012-08-26 20:09-0700">8:09pm on August 26th, 2012</time>
+            </small>
+            <a class="reset" href="javascript:time_chart.filterAll(); dc.redrawAll();" style="display: none;">
+                reset
+            </a>
+            <div class="clearfix"></div>
+        </div>
+       </div>
+     <div class="row">
+        <div id="temp-chart">
+        <a class="reset" href="javascript:temp_chart.filterAll(); dc.redrawAll();" style="display: none;">
+                reset
+            </a>
+            <div class="clearfix"></div>
+ 			</div>
+ </div>
+    <div class="row">
+		<div id="line-chart">
+		           <a class="reset" href="javascript:line_chart.filterAll(); dc.redrawAll();" style="display: none;">
+                reset
+            </a>
+            <div class="clearfix"></div>
+ 		</div>
+    </div>
+
+</div> <!-- end container -->
+
+<script type="text/javascript">
+// charts
+
+function oneGraph(){
+var coerce_row = function(d){
+    return {
+        time: new Date(+d[0] * 1000.0),
+        field: d[1],
+        temperature: +d[2],
+        count: +d[3],
+    };
+};
+var data = [
+ //['time', 'text', 'temperature', 'count'],
+ ['1379952000', 'field_1', 91, 56],
+ ['1379952000', 'field_2', 50, 20],
+ ['1379952000', 'field_3', 88, 24],
+ ['1379952000', 'field_4', 50, 37],
+ ['1379953200', 'field_1', 97, 58],
+ ['1379953200', 'field_2', 84, 86],
+ ['1379953200', 'field_3', 85, 62],
+ ['1379953200', 'field_4', 88, 73],
+ ['1379954400', 'field_1', 89, 38],
+ ['1379954400', 'field_2', 52, 26],
+ ['1379954400', 'field_3', 98, 66],
+ ['1379954400', 'field_4', 96, 38],
+ ['1379955600', 'field_1', 95, 98],
+ ['1379955600', 'field_2', 88, 12],
+ ['1379955600', 'field_3', 57, 95],
+ ['1379955600', 'field_4', 94, 80],
+ ['1379956800', 'field_1', 77, 51],
+ ['1379956800', 'field_2', 50, 19],
+ ['1379956800', 'field_3', 58, 23],
+ ['1379956800', 'field_4', 99, 29],
+ ['1379958000', 'field_1', 75, 28],
+ ['1379958000', 'field_2', 57, 16],
+ ['1379958000', 'field_3', 65, 53],
+ ['1379958000', 'field_4', 84, 37],
+ ['1379959200', 'field_1', 98, 72],
+ ['1379959200', 'field_2', 71, 63],
+ ['1379959200', 'field_3', 50, 68],
+ ['1379959200', 'field_4', 51, 72],
+ ['1379960400', 'field_1', 91, 64],
+ ['1379960400', 'field_2', 64, 77],
+ ['1379960400', 'field_3', 89, 13],
+ ['1379960400', 'field_4', 62, 85],
+ ['1379961600', 'field_1', 82, 69],
+ ['1379961600', 'field_2', 53, 70],
+ ['1379961600', 'field_3', 74, 48],
+ ['1379961600', 'field_4', 66, 29]];
+
+ var dataset = data.map(coerce_row);
+ //drawGraphs(dataset);
+
+ 
+ var varGroup=[{varName:"Tibucon_7_Temp_1124682048"},{varName:"Tibucon_17_Temp_1124682048"}];
+	
+	for(i in varGroup){
+		console.log(i+", "+ varGroup[i].varName);
+		//getData(varGroup[i].varName,1453536000000,1453566000000);
+		getData(varGroup[i].varName,1453536000000,1454918400000);
+	}
+	
+	var sc=2;
+	var vList=[];
+	//getData("Tibucon_17_Temp_1124682048",1453536000000,1454918400000);
+	function getData(varName,initialDate,finalDate){
+		$.ajax({
+			type : 'POST',
+			url :  homeWS_URL,
+			data : "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:home='http://home.eefrmwrk.tekniker.es/'><soapenv:Header/><soapenv:Body><home:getVariableValues><varName>"+varName+"</varName><initialDate>"+initialDate+"</initialDate><finalDate>"+finalDate+"</finalDate><absolut>absolut</absolut></home:getVariableValues></soapenv:Body></soapenv:Envelope>",
+			contentType : 'text/xml;charset=UTF-8',
+			processData : false,
+			success : getVarValues_success,
+			complete : getVarValues_complete,
+				error : function(a,e){console.log("ERROR: " +a);}
+			});
+
+			function getVarValues_success(xml, status, xhr) {
+				$(xml).find('variable').each(function (index, element) {
+					var V={};
+					V.varName=varName;
+					V.value = Number($(element).find('value').text());
+					V.timestamp = new Date(Number($(element).find('timestamp').text()));
+					vList.push(V);
+				});
+			};
+
+			function getVarValues_complete(xhr, status) {
+				console.log("getVarValues_complete");
+				sc--;
+				if(sc==0)
+					drawGraphs(vList);
+			};
+	};
+ 
+ 
+ function drawGraphs(dataset){
+	 
+	 var time_chart = dc.seriesChart("#time-chart"),
+	    temp_chart = dc.pieChart("#temp-chart"),
+	    width = time_chart.root()[0][0].parentElement.clientWidth;
+	 
+	 
+var addC = function(p, d){ return p + 1;},
+    remC = function(p, d){ return p - 1;},
+    addT = function(p, d){ return p + d.value;},
+    remT = function(p, d){ return p - d.value;},
+    ini = function(){ return 0;},
+    ndx = crossfilter(dataset),
+    all = ndx.groupAll().reduce(addC, remC, ini),
+   
+    fields = ndx.dimension(function(d){ return d.varName;}),
+    nameFields=fields.group().reduce(function(d){return 1},function(d){return -1},function(d){return 0});
+    
+    time_field = ndx.dimension(function(d) { return [d.timestamp, d.varName];}),
+    time_fields = time_field.group().reduce(addT, remT, ini),
+    
+    temperature = ndx.dimension(function(d){return d.value;}),
+    temperatures = temperature.group().reduce(addC, remC, ini);
+    
+    extent = d3.extent(dataset, function(d){return d.timestamp;}),  
+    range = d3.extent(dataset, function(d){return d.value;}),
+    date_format = d3.time.format("%b %d %I:%M %p"),
+
+d3.select("#date-start")
+    .attr("datetime", extent[0])
+    .text(date_format(extent[0]));
+d3.select("#date-end")
+    .attr("datetime", extent[1])
+    .text(date_format(extent[1]));
+
+dc.dataCount("#data-count")
+// Since the number of records (returned by .size()) isn't the same as the number
+// of data points we're aggregating, supply a size-like object that returns the
+// total number of data points represented.
+    .dimension({size: function(){return dataset.reduce(addC, 0);}})
+    .group(all);
+console.log(range);
+time_chart
+    .width(.5 * width)
+    .height(400)
+    .dimension(time_field)
+    .group(time_fields)
+    .seriesAccessor(function(d) { return d.key[1]; })
+    .keyAccessor(function(d) {return d.key[0];})
+    .xAxisLabel("Observation Time")
+    .yAxisLabel("Temperature")
+    .y(d3.scale.linear().domain([range[0]-5,range[1]+5]))
+    .x(d3.time.scale().domain(extent))
+    .renderHorizontalGridLines(true)
+    .renderVerticalGridLines(true)
+    .legend(dc.legend().x(50).y(300).itemHeight(10).gap(5))
+    .brushOn(false);
+
+	temp_chart
+	.dimension(temperature)
+	.group(temperatures);
+	
+	temp_chart
+	.dimension(fields)
+	.group(nameFields);
+
+
+dc.renderAll();
+ 
+ };
+}
+
+ otherGraph();
+ 
+function otherGraph(){
+	var data = [
+	            {
+	             "date": "2013-11-01 1",
+	             "value": 214
+	            },
+	            {
+	             "date": "2013-11-01 2",
+	             "value": 457
+	            },
+	            {
+	             "date": "2013-11-01 3",
+	             "value": 534
+	            },
+	            {
+	             "date": "2013-11-01 4",
+	             "value": 1262
+	            },
+	            {
+	             "date": "2013-11-01 5",
+	             "value": 958
+	            },
+	            {
+	             "date": "2013-11-02 1",
+	             "value": 77
+	            },
+	            {
+	             "date": "2013-11-02 2",
+	             "value": 310
+	            },
+	            {
+	             "date": "2013-11-02 3",
+	             "value": 486
+	            },
+	            {
+	             "date": "2013-11-02 4",
+	             "value": 397
+	            },
+	            {
+	             "date": "2013-11-02 5",
+	             "value": 800
+	            },
+	            {
+	             "date": "2013-11-03 1",
+	             "value": 355
+	            },
+	            {
+	             "date": "2013-11-03 2",
+	             "value": 8
+	            },
+	            {
+	             "date": "2013-11-03 3",
+	             "value": 638
+	            },
+	            {
+	             "date": "2013-11-03 4",
+	             "value": 100
+	            },
+	            {
+	             "date": "2013-11-03 5",
+	             "value": 196
+	            },
+	            {
+	             "date": "2013-11-04 1",
+	             "value": 1116
+	            },
+	            {
+	             "date": "2013-11-04 2",
+	             "value": 26
+	            },
+	            {
+	             "date": "2013-11-04 3",
+	             "value": 359
+	            },
+	            {
+	             "date": "2013-11-04 3",
+	             "value": 251
+	            },
+	            {
+	             "date": "2013-11-04 4",
+	             "value": 53
+	            },
+	            {
+	             "date": "2013-11-05 1",
+	             "value": 614
+	            },
+	            {
+	             "date": "2013-11-05 2",
+	             "value": 624
+	            },
+	            {
+	             "date": "2013-11-05 3",
+	             "value": 95
+	            },
+	            {
+	             "date": "2013-11-05 4",
+	             "value": 310
+	            },
+	            {
+	             "date": "2013-11-05 5",
+	             "value": 798
+	            },
+	            {
+	             "date": "2013-11-06 1",
+	             "value": 592
+	            },
+	            {
+	             "date": "2013-11-06 2",
+	             "value": 1182
+	            },
+	            {
+	             "date": "2013-11-06 3",
+	             "value": 376
+	            },
+	            {
+	             "date": "2013-11-06 4",
+	             "value": 271
+	            },
+	            {
+	             "date": "2013-11-06 5",
+	             "value": 30
+	            },
+	            {
+	             "date": "2013-11-07 1",
+	             "value": 851
+	            },
+	            {
+	             "date": "2013-11-07 2",
+	             "value": 513
+	            },
+	            {
+	             "date": "2013-11-07 3",
+	             "value": 95
+	            },
+	            {
+	             "date": "2013-11-07 4",
+	             "value": 51
+	            },
+	            {
+	             "date": "2013-11-07 5",
+	             "value": 60
+	            },
+	            {
+	             "date": "2013-11-08 1",
+	             "value": 161
+	            },
+	            {
+	             "date": "2013-11-08 2",
+	             "value": 658
+	            },
+	            {
+	             "date": "2013-11-08 3",
+	             "value": 871
+	            },
+	            {
+	             "date": "2013-11-08 4",
+	             "value": 989
+	            },
+	            {
+	             "date": "2013-11-08 5",
+	             "value": 164
+	            },
+	            {
+	             "date": "2013-11-09 1",
+	             "value": 644
+	            },
+	            {
+	             "date": "2013-11-09 1",
+	             "value": 524
+	            },
+	            {
+	             "date": "2013-11-09 2",
+	             "value": 241
+	            },
+	            {
+	             "date": "2013-11-09 3",
+	             "value": 323
+	            },
+	            {
+	             "date": "2013-11-09 4",
+	             "value": 350
+	            },
+	            {
+	             "date": "2013-11-10 1",
+	             "value": 487
+	            },
+	            {
+	             "date": "2013-11-10 2",
+	             "value": 843
+	            },
+	            {
+	             "date": "2013-11-10 3",
+	             "value": 1883
+	            },
+	            {
+	             "date": "2013-11-10 4",
+	             "value": 185
+	            },
+	            {
+	             "date": "2013-11-10 5",
+	             "value": 15
+	            }
+	           ]
+
+
+	            var parseFullDate = d3.time.format('%Y-%m-%d %H').parse;
+				var parseMonthDate = d3.time.format('%Y-%m-%d').parse;
+
+	           	data.forEach(function(d) {
+	           		d.fullDate=parseFullDate(d.date);
+	           		var mDate=d.fullDate.getFullYear()+"-"+(d.fullDate.getMonth()+1)+"-"+(d.fullDate.getDate())
+	           		d.monthDate =  parseMonthDate(mDate);//d3.time.month(d.fullDate);
+	           		d.value = +d.value;
+	           	})
+
+	           line_chart = dc.lineChart('#line-chart');
+	           temp_chart = dc.pieChart("#temp-chart");
+	           time_chart = dc.lineChart('#time-chart');
+	           
+	           var ndx = crossfilter(data);
+	           var all = ndx.groupAll().reduce(function(d){return d+1},function(d){return d-1},function(){return 0});
+	           
+	           dc.dataCount('#data-count').dimension(ndx).group(all);
+	           
+           	   var dateDim = ndx.dimension(function(d) {return d.monthDate;})
+		       var dateDimTotal = dateDim.group().reduce(reduceAdd, reduceRemove, reduceInitial);
+        	
+           	   var fullDim = ndx.dimension(function(d) {return d.fullDate;})
+		       var fullDimTotal = fullDim.group().reduceSum(function(d){return d.value});
+           	   
+           	   function reduceAdd(p, v) {
+           			++p.count;
+           			p.total += v.value;
+                       if (p.count == 0) {
+                           p.average = 0;
+                       } else {
+                           p.average = p.total / p.count;
+                       };
+           			return p;
+           		}
+
+           		function reduceRemove(p, v) {
+           			--p.count;
+           			p.total -= v.value;
+                       if (p.count == 0) {
+                           p.average = 0;
+                       } else {
+                           p.average = p.total / p.count;
+                       };
+           			return p;
+           		}
+
+           		function reduceInitial() {
+                       return {
+                           count: 0,
+                           total: 0,
+                           average: 0
+                       };
+           		}
+    
+		      var coolDim = ndx.dimension(function(d) {if (d.value > 400)return 'BIG';	else return 'SMALL';});
+		      var coolGroup = coolDim.group();
+		      
+		      var minDate = dateDim.bottom(1)[0].monthDate;
+	          var maxDate = dateDim.top(1)[0].date;
+
+	           		line_chart
+	           		.width(600)
+	           		.height(150)
+	           		.dimension(dateDim)
+	           		.group(dateDimTotal,'Monthly Index Average')
+	           		.elasticY(true)
+       				.elasticX(true)
+	                .valueAccessor(function(p) {return p.value.average;})
+	           		.x(d3.time.scale().domain([minDate, maxDate]))
+	           		.stack(dateDimTotal, 'Monthly Index Move', function (d) {return d.value.total;})
+	           		.legend(dc.legend().x(50).y(10).itemHeight(10).gap(5));
+	               
+	           		time_chart
+	           		.width(600)
+	           		.height(150)
+	           		.dimension(fullDim)
+	           		.group(fullDimTotal)
+	           		.elasticY(true)
+       				.elasticX(true)
+	                .x(d3.time.scale().domain([minDate, maxDate]))
+	           		
+	           		
+	           		temp_chart
+					.dimension(coolDim)
+					.group(coolGroup);
+	           		
+	                   dc.renderAll();
+	
+	
+}
+
+ 
+</script>
+</body>
+</html>

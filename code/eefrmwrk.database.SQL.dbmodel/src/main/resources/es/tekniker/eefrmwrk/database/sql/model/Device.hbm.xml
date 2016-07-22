@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.Device" table="device">
+        <id name="devId" type="long">
+            <column name="dev_id" />
+           <generator class="sequence">
+            	<param name="sequence">device_dev_id_seq</param>
+            </generator>
+        </id>
+        <property name="devName" type="string">
+            <column name="dev_name" not-null="true" unique="true" />
+        </property>
+        <property name="devUri" type="string">
+            <column name="dev_uri" not-null="true" />
+        </property>
+        <property name="devDesc" type="string">
+            <column name="dev_desc" />
+        </property>
+        <property name="devStatus" type="string">
+            <column name="dev_status" />
+        </property>
+        <property name="devInfo" type="string">
+            <column name="dev_info" />
+        </property>
+        <property name="devLocalization" type="long">
+            <column name="dev_localization" />
+        </property>
+        <property name="devCapabilities" type="string">
+            <column name="dev_capabilities" />
+        </property>
+        <property name="activ" type="long">
+            <column name="activ" />
+        </property>
+ <!--         <set name="homeDevices" table="home_device" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dev_id" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.HomeDevice" />
+        </set>
+       <set name="deviceVarMetadatas" table="device_var_metadata" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dev_id" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.DeviceVarMetadata" />
+        </set> -->
+    </class>
+</hibernate-mapping>

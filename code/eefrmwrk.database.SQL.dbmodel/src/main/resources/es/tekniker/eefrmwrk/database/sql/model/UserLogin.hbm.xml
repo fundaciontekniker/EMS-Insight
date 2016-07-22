@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.UserLogin" table="user_login">
+        <id name="userId" type="long">
+            <column name="user_id" />
+            <generator class="sequence">
+            	<param name="sequence">user_login_user_id_seq</param>
+            </generator>
+        </id>
+        <property name="userName" type="string">
+            <column name="user_name" not-null="true" unique="true" />
+        </property>
+        <property name="userLogin" type="string">
+            <column name="user_login" unique="true" />
+        </property>
+        <property name="userPassword" type="string">
+            <column name="user_password" />
+        </property>
+        <property name="userRole" type="string">
+            <column name="user_role" />
+        </property>
+        <property name="activ" type="long">
+            <column name="activ" not-null="true"/>
+        </property>
+        <!-- 
+        <set name="userVarMetadaStages" table="user_var_metada_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.UserVarMetadaStage" />
+        </set>
+        <set name="userOpcStages" table="user_opc_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.UserOpcStage" />
+        </set>
+        <set name="stages" table="stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stage_user" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.Stage" />
+        </set>
+         -->
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>	
+    <title>HOME</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+<!-- 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.css" />  -->
+<!-- 	<script src="https://code.jquery.com/jquery-1.12.3.js"></script> -->
+<!-- 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>	 -->
+
+	<link href="scripts/jquery/jquery.mobile-1.3.1.min.css" rel="stylesheet" type="text/css" />
+	<script src="scripts/jquery/jquery-1.9.1.min.js"></script>
+	<script src="scripts/jquery/jquery.mobile-1.3.1.min.js"></script>
+	
+	<script src="scripts/conf.js"></script>
+	<script src="scripts/dataModel.js"></script>
+	<script src="scripts/index.js"></script>
+	<script src="scripts/alarm.js"></script>
+	<link rel="stylesheet" href="scripts/icomoon/style.css" />
+	<style>
+	
+	/* Si la anchura es menor de 800pxm, apila las celdas en una columna.
+	 Em es el tamaño de la fuente actual. (Ej: si la fuente es 10 pt, 40 em son 400pt.)
+	*/
+
+	
+	.fs1 {
+		font-size: 4em;
+	}
+	
+	@media all and (max-width: 800px){
+		.ui-grid-a .ui-block-a,
+		.ui-grid-a .ui-block-b{
+			float: right; 
+			width: 100%;
+		}
+		
+		.ui-grid-b .ui-block-a,
+		.ui-grid-b .ui-block-c,
+		.ui-grid-b .ui-block-b{
+			float: right; 
+			width: 100%;
+		} 
+		
+		.fs1 {
+		font-size: 2em;
+		}
+	}	
+	
+	@media all and (max-width: 400px){
+	.fs1 {
+		display:none;
+	}}
+	
+	
+
+	
+
+	</style>
+  </head>
+  <body>
+    <div data-role="page" id="graphPage">
+      <div data-role="header" data-position="fixed">
+      
+        <h1>
+        LIVINGLAB
+<!--         <img border="0" src="img/IK4-TEKNIKER.gif"/>  -->
+        </h1>
+      </div>
+      <div data-role="content" id="a">
+<!--         <fieldset class="ui-grid-b" class="rwd-example">
+          <div class="ui-block-a">
+			<a href="energy.html" data-role="button" rel="external" data-theme="c">Electric Measures</a>
+          </div>
+          <div class="ui-block-b">
+             <a  href="historic.html" data-role="button" rel="external" data-theme="c">Variables</a>
+          </div>
+          <div class="ui-block-c">
+             <a  href="realTime.html" data-role="button" rel="external" data-theme="c">Real Time</a>
+          </div>
+        </fieldset> -->
+		<fieldset class="ui-grid-a">
+          <div class="ui-block-a">
+             <a  href="historic.html" data-role="button" rel="external" data-theme="c">
+			 <div class="fs1" aria-hidden="true" data-icon="&#xe002;"></div>
+			 Historic</a>
+          </div>
+          <div class="ui-block-b">
+             <a  href="realTime.html" data-role="button" rel="external" data-theme="c">
+			 <div class="fs1" aria-hidden="true" data-icon="&#xe001;"></div>
+			 Real Time</a>
+          </div>
+        </fieldset>
+		
+        <fieldset class="ui-grid-a">
+              <div class="ui-block-a">
+            <a  href="alarm.html" data-role="button" rel="external" data-theme="c">
+			
+			 <div class="fs1" aria-hidden="true" data-icon="&#xe000;"></div>
+			 Alarms</a>
+          </div>
+          <div class="ui-block-b">
+             <a  href="predictors.html" data-role="button" rel="external" data-theme="c">
+			 
+			 <div class="fs1" aria-hidden="true" data-icon="&#xe004;"></div>Prediction</a>
+          </div>
+        </fieldset>
+		<fieldset class="ui-grid-solo">
+          <div class="ui-block-a">
+			<a id="link_varTree" data-theme="a"  rel="external"  data-ajax="false" href="varTree.html" data-role="button">Select Variables</a>
+			<ul data-role="listview" id="list_selectedVar" data-split-icon="plus" data-inset="true">
+			</div>
+			
+        </fieldset>
+      </div>
+    </div>
+    
+    
+  </body>
+  <script>
+	index.init();
+	//alarmNotifier.init();
+  </script>
+ </html>

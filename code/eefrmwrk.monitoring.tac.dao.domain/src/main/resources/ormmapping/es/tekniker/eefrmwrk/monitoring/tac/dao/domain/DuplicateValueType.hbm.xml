@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Virginia Aranceta
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.DuplicateValueType" table="DuplicateValueType" schema="dbo" lazy="false">
+		<id name="duplicateValueTypeId" column="DuplicateValueTypeId" type="byte" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="name" column="Name" type="string" length="50" not-null="true" lazy="false"/>
+		<set name="ORM_DuplicateValue" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="DuplicateValueTypeId" not-null="true"/>
+			<one-to-many class="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.DuplicateValue"/>
+		</set>
+	</class>
+</hibernate-mapping>

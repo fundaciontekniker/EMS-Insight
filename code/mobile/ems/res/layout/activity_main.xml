@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    
+    
+    <TextView
+        android:id="@+id/title_textview"
+        style="@style/TitleColorStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+                
+        android:textStyle="bold" 
+        android:textSize="60.0sp"
+        android:text="@string/title" />
+    
+   
+      <Button
+	        android:id="@+id/open_web_button"
+	        style="@style/ButtonColorStyle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:layout_marginBottom="16dp"	        
+	        android:layout_centerInParent="true"
+	        android:layout_below="@id/title_textview"
+	        android:layout_marginTop="50dp"
+	        android:paddingLeft="32dp"
+	        android:paddingRight="32dp"
+	        android:text="@string/open_web_button" />
+      
+       <Button
+	        android:id="@+id/notification_button"
+	        style="@style/ButtonColorStyle"
+	        android:layout_below="@id/open_web_button"
+	        android:layout_marginLeft="20dp"	        
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:layout_marginBottom="16dp"	        
+	        android:layout_centerInParent="true"
+	        android:layout_marginTop="20dp"
+	        android:paddingLeft="32dp"
+	        android:paddingRight="32dp"
+	        android:text="@string/notification_button" />
+		
+    
+</RelativeLayout>

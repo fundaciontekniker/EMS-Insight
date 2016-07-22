@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Virginia Aranceta
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.LocalizedAlarmType" table="LocalizedAlarmType" schema="dbo" lazy="false">
+		<id name="alarmTypeId" column="AlarmTypeId" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="alarmTypeText" column="AlarmTypeText" type="string" length="256" not-null="true" lazy="false"/>
+	</class>
+</hibernate-mapping>

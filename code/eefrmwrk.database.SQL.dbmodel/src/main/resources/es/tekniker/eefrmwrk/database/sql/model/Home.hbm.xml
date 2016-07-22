@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.Home" table="home">
+        <id name="hiId" type="long">
+            <column name="hi_id" />
+            <generator class="sequence">
+            	<param name="sequence">home_hi_id_seq</param>
+            </generator>
+        </id>
+        <property name="hiName" type="string">
+            <column name="hi_name" not-null="true" unique="true" />
+        </property>
+        <property name="hiEndpoint" type="string">
+            <column name="hi_endpoint" />
+        </property>
+        <property name="hiLocalization" type="long">
+            <column name="hi_localization" />
+        </property>
+        <property name="activ" type="long">
+            <column name="activ" not-null="true"/>
+        </property>
+ <!--         <set name="homeDevices" table="home_device" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="hi_id" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.HomeDevice" />
+        </set>
+        
+      <set name="homeVarMetadatas" table="home_var_metadata" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="hi_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.HomeVarMetadata" />
+        </set> -->
+    </class>
+</hibernate-mapping>

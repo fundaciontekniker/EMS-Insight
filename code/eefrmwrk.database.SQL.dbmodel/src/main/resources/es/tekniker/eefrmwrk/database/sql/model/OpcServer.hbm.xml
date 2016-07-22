@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="es.tekniker.eefrmwrk.database.sql.model.OpcServer" table="opc_server">
+        <id name="opcServerId" type="long">
+            <column name="opc_server_id" />
+            <generator class="sequence">
+            	<param name="sequence">opc_server_opc_server_id_seq</param>
+            </generator>            
+        </id>
+        <property name="opcUrl" type="string">
+            <column name="opc_url" not-null="true" />
+        </property>
+        <property name="opcDesc" type="string">
+            <column name="opc_desc" />
+        </property>
+        <property name="activ" type="long">
+            <column name="activ" />
+        </property>
+<!--         
+        <set name="userOpcStages" table="user_opc_stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="opc_server_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.UserOpcStage" />
+        </set>
+        <set name="opcNodes" table="opc_node" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="opc_server_id" not-null="true" />
+            </key>
+            <one-to-many class="es.tekniker.eefrmwrk.database.sql.model.OpcNode" />
+        </set>
+         -->
+    </class>
+</hibernate-mapping>

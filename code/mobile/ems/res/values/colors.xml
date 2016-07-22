@@ -1,0 +1,12 @@
+<resources>
+       <color name="myColor" >#17567D</color>
+       
+       <color name="bg_action_bar" >#007174</color>
+       <color name="bg_action_bar_start">#18298D</color>
+       <color name="bg_action_bar_end" >#30A32C</color>
+       
+       <color name="white" >#FFFFFF</color>
+       <color name="black" >#000000</color>
+       
+       
+</resources>

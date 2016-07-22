@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Virginia Aranceta
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.Event" table="Event" schema="dbo" lazy="false">
+		<id name="eventId" column="EventId" type="integer" unsaved-value="0">
+			<generator class="identity">
+			</generator>
+		</id>
+		<property name="eventTime" column="EventTime" index="IX_Event01" type="timestamp" not-null="true" lazy="false"/>
+		<many-to-one name="eventType" cascade="lock" column="EventTypeId" index="IX_Event01" class="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.EventType" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="objectPath" cascade="lock" column="ObjectPathId" class="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.ObjectPath" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="shortcutPath" cascade="lock" column="ShortcutPathId" class="es.tekniker.eefrmwrk.monitoring.tac.dao.domain.ObjectPath" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="alarmTypeId" column="AlarmTypeId" type="integer" not-null="false" lazy="false"/>
+		<property name="commandTypeId" column="CommandTypeId" type="integer" not-null="false" lazy="false"/>
+		<property name="objectType" column="ObjectType" type="string" length="24" not-null="false" lazy="false"/>
+		<property name="attributeType" column="AttributeType" type="string" length="24" not-null="false" lazy="false"/>
+		<property name="operatorUnit" column="OperatorUnit" type="string" length="50" not-null="false" lazy="false"/>
+		<property name="objectKey" column="ObjectKey" type="string" length="40" not-null="false" lazy="false"/>
+		<property name="userName" column="UserName" type="string" length="50" not-null="false" lazy="false"/>
+		<property name="comment" column="Comment" type="string" length="128" not-null="false" lazy="false"/>
+		<property name="alarmPriority" column="AlarmPriority" type="short" not-null="false" lazy="false"/>
+		<property name="objectOldValue" column="ObjectOldValue" type="string" length="80" not-null="false" lazy="false"/>
+		<property name="objectNewValue" column="ObjectNewValue" type="string" length="80" not-null="false" lazy="false"/>
+		<property name="trendLogGuid" column="TrendLogGuid" type="string" not-null="false" lazy="false"/>
+		<property name="trendLogSequence" column="TrendLogSequence" type="integer" not-null="false" lazy="false"/>
+		<property name="trendLogOldValue" column="TrendLogOldValue" type="float" length="53" not-null="false" lazy="false"/>
+		<property name="trendLogNewValue" column="TrendLogNewValue" type="float" length="53" not-null="false" lazy="false"/>
+		<property name="trendLogTime" column="TrendLogTime" type="timestamp" not-null="false" lazy="false"/>
+		<property name="signatureAction" column="SignatureAction" type="string" length="80" not-null="false" lazy="false"/>
+		<property name="signatureReason" column="SignatureReason" type="string" length="80" not-null="false" lazy="false"/>
+		<property name="signatureComment" column="SignatureComment" type="string" length="2000" not-null="false" lazy="false"/>
+		<property name="firstName" column="FirstName" type="string" length="50" not-null="false" lazy="false"/>
+		<property name="lastName" column="LastName" type="string" length="50" not-null="false" lazy="false"/>
+		<property name="groupName" column="GroupName" type="string" length="65" not-null="false" lazy="false"/>
+		<property name="uniqueField" column="UniqueField" type="string" length="50" not-null="false" lazy="false"/>
+		<property name="tenant" column="Tenant" type="integer" not-null="false" lazy="false"/>
+		<property name="individual" column="Individual" type="integer" not-null="false" lazy="false"/>
+		<property name="linkName" column="LinkName" type="string" length="16" not-null="false" lazy="false"/>
+		<property name="stationName" column="StationName" type="string" length="16" not-null="false" lazy="false"/>
+		<property name="deviceName" column="DeviceName" type="string" length="16" not-null="false" lazy="false"/>
+		<property name="zone" column="Zone" type="integer" not-null="false" lazy="false"/>
+		<property name="site" column="Site" type="integer" not-null="false" lazy="false"/>
+	</class>
+</hibernate-mapping>

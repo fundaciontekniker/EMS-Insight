@@ -1,0 +1,100 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="es.tekniker.eefrmwrk.ems.MainActivity" >
+
+    <!-- Notification form -->
+
+    <ScrollView
+        android:id="@+id/notification_form"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" 
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical" 
+            >
+            
+            <TextView
+                android:id="@+id/notificationtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/notification_title"
+                android:textSize="@dimen/activity_notification_title_text_size"
+                android:textColor="@color/myColor"
+                />
+            
+            <TextView
+                android:id="@+id/notificationMainMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/notification_main_message"
+                android:textSize="@dimen/activity_notification_title_message_text_size"
+                android:textColor="@color/myColor"
+                />
+<!-- 
+            <ImageView
+                android:id="@+id/imageViewnotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/notification_image"
+                android:gravity="center" />
+		            
+             <TextView
+                android:id="@+id/notificationSecondaryMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/notification_secondary_message"
+                android:textSize="@dimen/activity_notification_title_message_text_size"
+                android:textColor="@color/myColor"
+                android:paddingBottom="12dp"
+                 android:paddingTop="12dp"
+                />
+ -->
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="0dip"
+	    android:layout_weight="1"
+	    android:gravity="center|bottom"
+	    android:orientation="vertical" >
+
+	    <Button
+	        android:id="@+id/notification_close_button"
+	        style="@style/ButtonColorStyle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:layout_marginBottom="16dp"
+	        android:paddingLeft="32dp"
+	        android:paddingRight="32dp"
+	        android:text="@string/action_notification_close" />
+	    
+	    <Button
+	        android:id="@+id/notification_delete_button"
+	        style="@style/ButtonColorStyle"
+	        
+	        android:layout_toRightOf="@id/notification_close_button"
+	        android:layout_marginLeft="20dp"	        
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:layout_marginBottom="16dp"
+	        android:paddingLeft="32dp"
+	        android:paddingRight="32dp"
+	        android:text="@string/action_notification_delete" />
+	    
+	</RelativeLayout>
+
+        </LinearLayout>
+        
+        
+    </ScrollView>
+  
+</merge>

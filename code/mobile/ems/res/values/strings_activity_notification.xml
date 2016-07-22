@@ -1,0 +1,18 @@
+<resources>
+	<string name="notification_title">Notificacion</string>
+	<string name="notification_image">Notificacion imagen</string>
+        
+    <string name="action_notification_close">Cerrar</string>
+    <string name="action_notification_delete">Borrar</string>
+    
+    <string name="strGCMNotificationTitle">EMS Notificacion</string>
+    <string name="notification_main_message">Notificacion</string>
+    <string name="notification_secondary_message">detalle</string>
+    
+    <string name="strNotificationReceived">Has recibido </string>	
+	<string name="strNotificationNotification"> notificación</string>
+	<string name="strNotificationNotifications"> notificaciones</string>
+    <string name="strNotificationOneNotification"> una notificación</string>
+    <string name="strNotificationNo"> No hay notificaciones</string>
+    
+</resources>

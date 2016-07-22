@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2012 11:43:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="es.tekniker.eefrmwrk.database.sql.model.OpcSubscription" table="opc_subscription">
+		<id name="opcSubId" type="long">
+			<column name="opc_sub_id" />
+			<generator class="sequence">
+				<param name="sequence">opc_subscription_opc_sub_id_seq</param>
+			</generator>
+		</id>
+		<property name="opcNodeId" type="long">
+			<column name="opc_node_id" not-null="true" />
+		</property>
+		<property name="opcVmd" type="long">
+			<column name="opc_vmd" not-null="true" />
+		</property>
+		<property name="opcPubint" type="long">
+			<column name="opc_pubint" />
+		</property>
+		<property name="opcDatachange" type="string">
+			<column name="opc_datachange" not-null="true" />
+		</property>
+		<property name="activ" type="long">
+			<column name="activ" />
+		</property>
+	</class>
+</hibernate-mapping>

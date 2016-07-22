@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory >
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url"></property>
+        
+        <property name="hibernate.connection.username"></property>
+        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.default_schema"></property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+	    <property name="hibernate.c3p0.acquire_increment">1</property>
+	    <property name="hibernate.c3p0.idle_test_period">3000</property>
+	    <property name="hibernate.c3p0.min_size">5</property>
+	    <property name="hibernate.c3p0.max_size">15</property>
+	    <property name="hibernate.c3p0.timeout">300</property>
+        
+        
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/Alarm.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/Alert.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/CepRuleStage.hbm.xml" />
+		<mapping resource="es/tekniker/eefrmwrk/database/sql/model/VarMetadataStage.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/TaskStage.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/UserStage.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/DeviceVarMetadata.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/HomeVarMetadata.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/HomeDevice.hbm.xml" />
+
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/ChangeLog.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/CepEngine.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/CepRule.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/Device.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/Home.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/Geopoint.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/Localization.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/OpcNode.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/OpcServer.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/OpcSubscription.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/Stage.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/Task.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/UserLogin.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/ValueRead.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/ValueVar.hbm.xml" />
+        <mapping resource="es/tekniker/eefrmwrk/database/sql/model/VarMetadata.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

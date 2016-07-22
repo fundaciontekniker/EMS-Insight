@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>es.tekniker.eefrmwrk</groupId>
+  <artifactId>eefrmwrk.monitoring.tac.mng.ws</artifactId>
+  <version>${eefrmwrk.version}</version>
+  <name>Tac Manager WS</name>
+ 
+  <properties>
+  	<eefrmwrk.version>0.0.1</eefrmwrk.version>
+  	<!-- <cxf.version>3.1.4</cxf.version> -->
+  	<cxf.version>2.2.7</cxf.version>         
+  </properties>
+ 
+  <dependencies>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+  			<artifactId>eefrmwrk.monitoring.tac.mng</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+				
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+  			<artifactId>eefrmwrk.monitoring.tac.mng.api</artifactId>
+			<version>${eefrmwrk.version}</version>
+		</dependency>
+				
+		<dependency>
+			<groupId>es.tekniker.eefrmwrk</groupId>
+  			<artifactId>eefrmwrk.commons.interface</artifactId>
+  			<version>${eefrmwrk.version}</version>			
+		</dependency>		
+		
+		
+		<!-- Apache CSF 3.1.4
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.2.3.RELEASE</version>
+		</dependency>		
+			 -->			
+				
+	</dependencies>
+	<build>
+	  	<finalName>TacManagerWS</finalName>
+	  	  	<resources>
+	  		<resource>
+	  			<directory>./src/main/resources</directory>
+	  		</resource>
+	  		<resource>
+	  			<directory>../eefrmwrk.monitoring.tac.mng.ws/src/main/resources</directory>
+	  		</resource>
+	  	</resources>
+	    <pluginManagement>
+	      <plugins>
+	        <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-compiler-plugin</artifactId>
+	          <configuration>
+	            <source>1.7</source>
+	            <target>1.7</target>
+	          </configuration>
+	        </plugin>
+	        <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-eclipse-plugin</artifactId>
+	          <configuration>
+	            <projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+	            <wtpmanifest>true</wtpmanifest>
+	            <wtpapplicationxml>true</wtpapplicationxml>
+	            <wtpversion>2.0</wtpversion>
+	          </configuration>
+	        </plugin>
+	      </plugins>
+	    </pluginManagement>
+  	</build>
+	<packaging>war</packaging>
+</project>
